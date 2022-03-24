@@ -1,0 +1,44 @@
+{
+  "name": "xnxktech/laravel-redis-helper",
+  "description": "redis helper for Laravel",
+  "type": "library",
+  "require": {
+    "php": "^8.0",
+    "predis/predis": "^1.1",
+    "laravel/framework": "^9.0"
+  },
+  "require-dev": {
+    "nunomaduro/phpinsights": "^2.2",
+    "pestphp/pest": "^1.21",
+    "phpunit/phpunit": "^9.0",
+    "orchestra/testbench": "^7.1"
+  },
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "lain",
+      "email": "lain@xnxk.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "XNXK\\LaravelRedisHelper\\": "src/"
+    },
+    "files":[
+      "src/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
