@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace XNXK\LaravelRedisHelper;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
