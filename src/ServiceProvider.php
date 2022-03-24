@@ -25,7 +25,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/redis.php.php' => config_path('redis.php'),
+            __DIR__ . '/../config/redis.php' => config_path('redis.php'),
         ], 'config');
     }
 }
