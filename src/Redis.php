@@ -18,7 +18,7 @@ class Redis
         $this->type = 'string';
         $this->score = 0;
         $this->expire = -1;
-        
+
         $options = [
             'parameters' => [
                 'password' => $config['password'] ?? getenv('REDIS_PASSWORD') ?: '',
