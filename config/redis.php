@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'host' => getenv('REDIS_HOST'),
     'password' => getenv('REDIS_PASSWORD'),
