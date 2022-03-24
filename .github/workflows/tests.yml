@@ -1,0 +1,100 @@
+name: Tests
+
+on:
+  push:
+
+jobs:
+  phpunit:
+    name: ${{ matrix.php-versions }} - ${{ matrix.stability }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-versions: [ '8.0', '8.1' ]
+        stability: [ 'prefer-stable' ]
+
+    services:
+      redis:
+        image: redis:5.0-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, gd, gmp
+          key: cache-v1
+
+      - name: Cache extensions
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
+
+      - name: Setup PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, gd, gmp
+          coverage: xdebug
+          tools: phpunit, composer:v2
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2.1.7
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Set Minimum PHP 8.0 Versions
+        uses: nick-invision/retry@v2.6.0
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require guzzlehttp/guzzle:^7.2 --no-interaction --no-update
+        if: matrix.php-versions >= 8
+
+      - name: Set Minimum PHP 8.1 Versions
+        uses: nick-invision/retry@v2.6.0
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require symfony/symfony:5.4.x-dev league/commonmark:^2.0.2 phpunit/phpunit:^9.5.8 --no-interaction --no-update
+        if: matrix.php-versions >= 8.1
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v2.6.0
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare for environment variables
+        run: |
+          composer dump-autoload
+
+      - name: Run Testsuite
+        run: vendor/bin/pest tests/ --coverage-text --colors=always --coverage-html=coverage --coverage-clover coverage.xml
+        
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
