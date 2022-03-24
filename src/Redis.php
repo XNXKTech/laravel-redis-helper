@@ -21,14 +21,14 @@ class Redis
         
         $options = [
             'parameters' => [
-                'password' => $config['password'] ?? getenv('REDIS_PASSWORD') ?? '',
-                'database' => $config['database'] ?? getenv('REDIS_DB') ?? 0,
+                'password' => $config['password'] ?? getenv('REDIS_PASSWORD') ?: '',
+                'database' => $config['database'] ?? getenv('REDIS_DB') ?: 0,
             ],
         ];
         $this->client = new Client([
             'scheme' => 'tcp',
-            'host' => $config['host'] ?? getenv('REDIS_HOST') ?? '127.0.0.1',
-            'port' => $config['port'] ?? getenv('REDIS_PORT') ?? 6379,
+            'host' => $config['host'] ?? getenv('REDIS_HOST') ?: '127.0.0.1',
+            'port' => $config['port'] ?? getenv('REDIS_PORT') ?: 6379,
         ], $options);
     }
 
