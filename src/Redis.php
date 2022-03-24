@@ -22,24 +22,49 @@ class Redis
         ]);
     }
 
+    /**
+     * 设置操作的数据类型
+     *
+     * @param string $type
+     * @return $this
+     */
     public function type(string $type): static
     {
         $this->type = $type;
         return $this;
     }
 
+    /**
+     * 设置zset的score
+     *
+     * @param int $score
+     * @return $this
+     */
     public function score(int $score): static
     {
         $this->score = $score;
         return $this;
     }
 
+    /**
+     * 设置过期时间
+     *
+     * @param int $expire
+     * @return $this
+     */
     public function expire(int $expire): static
     {
         $this->expire = $expire;
         return $this;
     }
 
+    /**
+     * Get an item from the cache, or execute the given Closure and store the result.
+     *
+     * @param string $key
+     * @param callable $callback
+     * @return mixed
+     */
     public function remember(string $key, callable $callback)
     {
         $map = [
@@ -87,5 +112,18 @@ class Redis
 
         return $getValue;
     }
+
+    /**
+     * 调用predis方法
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return void
+     */
+    public function __call(string $name, array $arguments)
+    {
+        $this->client->$name(...$arguments);
+    }
+
 }
 

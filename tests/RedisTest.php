@@ -4,8 +4,9 @@ it('remember', function (){
         ->score(101)
         ->expire(3600)
         ->remember('test_name', function () {
-            return 'test';
+            return 'test101';
         });
 
-    expect($response)->toEqual('test');
+    expect($response)->toEqual('test101');
+
 });
