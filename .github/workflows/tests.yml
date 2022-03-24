@@ -89,10 +89,15 @@ jobs:
 
       - name: Prepare for environment variables
         run: |
+          cp .env.testing .env
           composer dump-autoload
 
       - name: Run Testsuite
         run: vendor/bin/pest tests/ --coverage-text --colors=always --coverage-html=coverage --coverage-clover coverage.xml
+        env:
+          REDIS_HOST: 127.0.0.1
+          REDIS_PASSWORD:
+          REDIS_PORT: 6379
         
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
