@@ -20,7 +20,7 @@ class Redis
         $this->score = 0;
         $this->hashKey = '';
         $this->expire = -1;
-        
+
         $options = [
             'parameters' => [
                 'password' => $config['password'] ?? getenv('REDIS_PASSWORD') ?: '',
@@ -70,17 +70,17 @@ class Redis
     }
 
     /**
-     * 设置hash的key
-     * 
+     * 设置hash的key.
+     *
      * @return $this
      */
     public function hashKey(string $key): static
     {
         $this->hashKey = $key;
-        
+
         return $this;
     }
-    
+
     /**
      * 设置过期时间.
      *
@@ -117,6 +117,7 @@ class Redis
                     // 没有匹配写入cache
                     $return = $callback();
                     $this->client->zadd($key, $this->score, $return);
+
                     return $return;
                 },
                 'put' => function ($value) use ($key): void {
@@ -129,16 +130,17 @@ class Redis
                     if ($hash) {
                         return $hash;
                     }
-                    
+
                     // 没有匹配写入cache
                     $return = $callback();
                     $this->client->hset($key, $this->hashKey, $return);
+
                     return $return;
                 },
                 'put' => function ($value) use ($key) {
                     $this->client->hset($key, $this->hashKey, $value);
-                }
-            ]
+                },
+            ],
         ];
 
         $getType = (string) $this->client->type($key);

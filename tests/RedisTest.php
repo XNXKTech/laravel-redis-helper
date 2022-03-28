@@ -7,7 +7,7 @@ it('rememberZset', function () {
         ->expire(3600)
         ->remember('test_zset', function () {
             return json_encode([
-                'name' => 'test101'
+                'name' => 'test101',
             ]);
         });
 
