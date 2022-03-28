@@ -11,12 +11,14 @@ class Redis
     public Client $client;
     private string $type;
     private int $score;
+    private string $hashKey;
     private int $expire;
 
     public function __construct(array $config = [])
     {
         $this->type = 'string';
         $this->score = 0;
+        $this->hashKey = '';
         $this->expire = -1;
         
         $options = [
@@ -68,6 +70,18 @@ class Redis
     }
 
     /**
+     * 设置hash的key
+     * 
+     * @return $this
+     */
+    public function hashKey(string $key): static
+    {
+        $this->hashKey = $key;
+        
+        return $this;
+    }
+    
+    /**
      * 设置过期时间.
      *
      * @return $this
@@ -97,19 +111,34 @@ class Redis
                 'get' => function () use ($key, $callback) {
                     $zset = $this->client->zrangebyscore($key, $this->score, $this->score);
                     if (is_array($zset) && count($zset) === 1) {
-                        return json_decode(current($zset), true);
+                        return current($zset);
                     }
 
                     // 没有匹配写入cache
                     $return = $callback();
-                    $this->client->zadd($key, $this->score, json_encode($return));
-
+                    $this->client->zadd($key, $this->score, $return);
                     return $return;
                 },
                 'put' => function ($value) use ($key): void {
-                    $this->client->zadd($key, $this->score, json_encode($value));
+                    $this->client->zadd($key, $this->score, $value);
                 },
             ],
+            'hash' => [
+                'get' => function () use ($callback, $key) {
+                    $hash = $this->client->hget($key, $this->hashKey);
+                    if ($hash) {
+                        return $hash;
+                    }
+                    
+                    // 没有匹配写入cache
+                    $return = $callback();
+                    $this->client->hset($key, $this->hashKey, $return);
+                    return $return;
+                },
+                'put' => function ($value) use ($key) {
+                    $this->client->hset($key, $this->hashKey, $value);
+                }
+            ]
         ];
 
         $getType = (string) $this->client->type($key);
