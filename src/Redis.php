@@ -39,10 +39,11 @@ class Redis
      *
      * @param string $name
      * @param array $arguments
+     * @return mixed
      */
-    public function __call(string $name, array $arguments): void
+    public function __call(string $name, array $arguments)
     {
-        $this->client->$name(...$arguments);
+        return $this->client->$name(...$arguments);
     }
 
     /**
