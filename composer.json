@@ -10,7 +10,7 @@
   "require-dev": {
     "nunomaduro/phpinsights": "2.4.0",
     "pestphp/pest": "1.21.3",
-    "phpunit/phpunit": "^9.0",
+    "phpunit/phpunit": "9.5.21",
     "orchestra/testbench": "^7.1",
     "nunomaduro/collision": "6.2.1"
   },
