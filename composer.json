@@ -12,7 +12,7 @@
     "pestphp/pest": "1.22.0",
     "phpunit/phpunit": "9.5.23",
     "orchestra/testbench": "^7.1",
-    "nunomaduro/collision": "6.2.1"
+    "nunomaduro/collision": "6.3.0"
   },
   "license": "Apache-2.0",
   "authors": [
