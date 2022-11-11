@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "236ff314ac387832d9a3dc213e6c594a",
+    "content-hash": "c5d19aa2df417a13611846db53440921",
     "packages": [
         {
             "name": "brick/math",
@@ -5891,30 +5891,30 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v1.22.1",
+            "version": "v1.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "af6240b4eed8b049ac43c91184141ee337305df7"
+                "reference": "339414e34842f9463f33641b00559d4bf227e478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/af6240b4eed8b049ac43c91184141ee337305df7",
-                "reference": "af6240b4eed8b049ac43c91184141ee337305df7",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/339414e34842f9463f33641b00559d4bf227e478",
+                "reference": "339414e34842f9463f33641b00559d4bf227e478",
                 "shasum": ""
             },
             "require": {
-                "nunomaduro/collision": "^5.10.0|^6.0",
-                "pestphp/pest-plugin": "^1.0.0",
+                "nunomaduro/collision": "^5.11.0|^6.3.0",
+                "pestphp/pest-plugin": "^1.1.0",
                 "php": "^7.3 || ^8.0",
-                "phpunit/phpunit": "^9.5.5"
+                "phpunit/phpunit": "^9.5.26"
             },
             "require-dev": {
-                "illuminate/console": "^8.47.0",
-                "illuminate/support": "^8.47.0",
-                "laravel/dusk": "^6.15.0",
-                "pestphp/pest-dev-tools": "dev-master",
-                "pestphp/pest-plugin-parallel": "^1.0"
+                "illuminate/console": "^8.83.26",
+                "illuminate/support": "^8.83.26",
+                "laravel/dusk": "^6.25.2",
+                "pestphp/pest-dev-tools": "^1.0.0",
+                "pestphp/pest-plugin-parallel": "^1.2"
             },
             "bin": [
                 "bin/pest"
@@ -5968,7 +5968,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v1.22.1"
+                "source": "https://github.com/pestphp/pest/tree/v1.22.2"
             },
             "funding": [
                 {
@@ -5984,10 +5984,6 @@
                     "type": "github"
                 },
                 {
-                    "url": "https://github.com/octoper",
-                    "type": "github"
-                },
-                {
                     "url": "https://github.com/olivernybroe",
                     "type": "github"
                 },
@@ -6000,33 +5996,33 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-08-29T10:42:13+00:00"
+            "time": "2022-11-09T21:10:57+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest-plugin.git",
-                "reference": "fc8519de148699fe612d9c669be60554cd2db4fa"
+                "reference": "606c5f79c6a339b49838ffbee0151ca519efe378"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest-plugin/zipball/fc8519de148699fe612d9c669be60554cd2db4fa",
-                "reference": "fc8519de148699fe612d9c669be60554cd2db4fa",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin/zipball/606c5f79c6a339b49838ffbee0151ca519efe378",
+                "reference": "606c5f79c6a339b49838ffbee0151ca519efe378",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.1 || ^2.0",
+                "composer-plugin-api": "^1.1.0 || ^2.0.0",
                 "php": "^7.3 || ^8.0"
             },
             "conflict": {
                 "pestphp/pest": "<1.0"
             },
             "require-dev": {
-                "composer/composer": "^1.10.19",
-                "pestphp/pest": "^1.0",
-                "pestphp/pest-dev-tools": "dev-master"
+                "composer/composer": "^2.4.2",
+                "pestphp/pest": "^1.22.1",
+                "pestphp/pest-dev-tools": "^1.0.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -6056,7 +6052,7 @@
                 "unit"
             ],
             "support": {
-                "source": "https://github.com/pestphp/pest-plugin/tree/v1.0.0"
+                "source": "https://github.com/pestphp/pest-plugin/tree/v1.1.0"
             },
             "funding": [
                 {
@@ -6072,7 +6068,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-03T15:53:42+00:00"
+            "time": "2022-09-18T13:18:17+00:00"
         },
         {
             "name": "phar-io/manifest",

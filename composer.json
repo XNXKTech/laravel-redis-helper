@@ -9,7 +9,7 @@
   },
   "require-dev": {
     "nunomaduro/phpinsights": "2.6.1",
-    "pestphp/pest": "1.22.1",
+    "pestphp/pest": "1.22.2",
     "phpunit/phpunit": "9.5.26",
     "orchestra/testbench": "^7.1",
     "nunomaduro/collision": "6.3.1"
