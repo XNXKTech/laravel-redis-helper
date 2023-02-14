@@ -11,7 +11,7 @@
     "nunomaduro/phpinsights": "2.6.1",
     "pestphp/pest": "1.22.3",
     "phpunit/phpunit": "9.5.26",
-    "orchestra/testbench": "^7.1",
+    "orchestra/testbench": "^8.0",
     "nunomaduro/collision": "6.3.2"
   },
   "license": "Apache-2.0",
