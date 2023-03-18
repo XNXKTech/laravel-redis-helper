@@ -8,7 +8,7 @@
     "laravel/framework": "^8.0 || ^9.0"
   },
   "require-dev": {
-    "nunomaduro/phpinsights": "2.6.1",
+    "nunomaduro/phpinsights": "2.8.0",
     "pestphp/pest": "1.22.3",
     "phpunit/phpunit": "9.5.26",
     "orchestra/testbench": "^7.1",
